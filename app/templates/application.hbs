@@ -1,3 +1,32 @@
-<h2 id="title">Welcome to Ember</h2>
+<header>
+  <nav class="loading">
+    {{#link-to "index" class="brand" }}
+      <span>FirePost</span>
+    {{/link-to}}
+    <!-- responsiveness-->
+    <input id="bmenu" type="checkbox" class="show">
+    <label for="bmenu" class="burger toggle pseudo button">menu</label>
+    <div class="menu">
+      {{#if session.currentUser}}
+        <button class="sign-out" {{action "signOut"}}>Sign Out</button>
+      {{else}}
+        {{#link-to "login" class="pseudo button icon-help-circled" }}Login{{/link-to}}
+      {{/if}}
+    </div>
+  </nav>
+</header>
 
-{{outlet}}
+<section class="intro">
+  <div class="flash-message--main-container">
+    {{#each flashMessages.queue as |flash|}}
+    <div>
+      <input type="checkbox" id="cardtoggle">
+      <article class="card">
+        <p>{{flash-message flash=flash}}</p>
+        <label for="cardtoggle" class="close">×</label>
+      </article>
+    </div>
+    {{/each}}
+  </div>
+  {{outlet}}
+</section>

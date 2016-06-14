@@ -1,0 +1,32 @@
+<section id="login-page" class="view--wrapper">
+  <div class="sign-in--wrapper">
+    {{#if session.isAuthenticated}}
+      <h2>You're Signed In!</h2>
+    {{else}}
+      <div style="text-align: center;">
+        <p><strong>Please log in with an external provider (click on its logo)</strong></p>
+        <button class="twitter-icon"  {{action "signIn" "twitter"}}></button>
+        <button class="github-icon"   {{action "signIn" "github"}}></button>
+        <button class="facebook-icon" {{action "signIn" "facebook"}}></button>
+        <button class="google-icon"   {{action "signIn" "google"}}></button>
+      </div>
+      <form>
+        <article class="card login">
+        <header> or log in with an existing FirePost account</header>
+        <section>
+          {{input type="text" placeholder="Your Email address" value=model.email id="email"}}
+        </section>
+        <section>
+          {{input type="password" value=model.password id="password"}}
+        </section>
+        <section>
+          {{#link-to 'forgot-password'}}Forgot your password?{{/link-to}}
+        </section>
+        <footer>
+          <button id="email-sign-in--button" {{action "signInEmailPassword" model}}> Sign in </button>
+        </footer>
+        </article>
+      </form>
+    {{/if}}
+  </div>
+</section>
